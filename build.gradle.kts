@@ -7,7 +7,7 @@ plugins {
     kotlin("plugin.spring") version "1.8.21"
 
     // DB
-    kotlin("plugin.jpa") version "1.8.0"
+    kotlin("plugin.jpa") version "1.8.21"
 
     // API documentation
     id("org.springdoc.openapi-gradle-plugin") version "1.6.0"
