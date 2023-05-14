@@ -51,7 +51,7 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter")
 
     // Mocking
-    testImplementation("io.mockk:mockk:1.12.0")
+    testImplementation("io.mockk:mockk:1.13.5")
 
     // DB
     testImplementation("org.testcontainers:postgresql")
