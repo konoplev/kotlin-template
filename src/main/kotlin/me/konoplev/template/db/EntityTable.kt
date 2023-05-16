@@ -1,4 +1,4 @@
-package me.konoplev.template.db.tables
+package me.konoplev.template.db
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
