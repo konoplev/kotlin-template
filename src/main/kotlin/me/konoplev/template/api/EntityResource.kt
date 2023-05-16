@@ -1,7 +1,6 @@
 package me.konoplev.template.api
 
 import me.konoplev.template.domain.Entity
-import me.konoplev.template.domain.EntityService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Content
@@ -17,7 +16,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/entities")
-class EntityResource(private val entityService: EntityService) {
+class EntityResource(private val entityMapper: EntityMapper) {
     @GetMapping("/{id}")
     @Operation(
         summary = "Get Entity by ID",
@@ -34,6 +33,6 @@ class EntityResource(private val entityService: EntityService) {
     )
     fun getEntityById(
         @PathVariable @Parameter(description = "Entity ID") id: UUID
-    ): ResponseEntity<Entity> =
-        entityService.get(id)?.let { ResponseEntity.ok(it) } ?: ResponseEntity.notFound().build()
+    ): ResponseEntity<EntityDto> =
+        entityMapper.get(id)?.let { ResponseEntity.ok(it) } ?: ResponseEntity.notFound().build()
 }

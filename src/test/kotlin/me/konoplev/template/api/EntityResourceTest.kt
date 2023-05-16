@@ -1,7 +1,5 @@
 package me.konoplev.template.api
 
-import me.konoplev.template.domain.Entity
-import me.konoplev.template.domain.EntityService
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -14,22 +12,22 @@ import java.util.*
 
 class EntityResourceTest {
     @MockK
-    lateinit var entityService: EntityService
+    lateinit var entityMapper: EntityMapper
 
     lateinit var entityResource: EntityResource
 
     @BeforeEach
     fun setUp() {
         MockKAnnotations.init(this)
-        entityResource = EntityResource(entityService)
+        entityResource = EntityResource(entityMapper)
     }
 
     @Test
     fun `getEntityById returns entity when found`() {
         // given
         val id = UUID.randomUUID()
-        val entity = Entity(id, "Test Entity")
-        every { entityService.get(id) } returns entity
+        val entity = EntityDto(id, "Test Entity")
+        every { entityMapper.get(id) } returns entity
 
         // when
         val response = entityResource.getEntityById(id)
@@ -43,7 +41,7 @@ class EntityResourceTest {
     fun `getEntityById returns 404 when entity not found`() {
         // given
         val id = UUID.randomUUID()
-        every { entityService.get(id) } returns null
+        every { entityMapper.get(id) } returns null
 
         // when
         val response = entityResource.getEntityById(id)
